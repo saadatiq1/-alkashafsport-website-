@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>صفحة العضو - الكشاف سبورت</title>
     <link rel="stylesheet" crossorigin href="assets/index-Cb2rYqPP.css">
+    <script src="translations.js"></script>
     <style>
       .member-header {
         background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
@@ -66,68 +67,68 @@
     </style>
   </head>
   <body>
-    <button class="logout-btn" onclick="logout()">تسجيل الخروج</button>
+    <button class="logout-btn" onclick="logout()" data-translate="logout">تسجيل الخروج</button>
     
     <div class="member-header">
-      <div class="welcome-text">مرحباً <span class="member-name" id="memberName">العضو</span></div>
-      <div class="subtitle">أهلاً بك في صفحتك الشخصية في الكشاف سبورت</div>
+      <div class="welcome-text"><span data-translate="welcome_member">مرحباً</span> <span class="member-name" id="memberName">العضو</span></div>
+      <div class="subtitle" data-translate="member_subtitle">أهلاً بك في صفحتك الشخصية في الكشاف سبورت</div>
     </div>
 
     <div class="dashboard-container">
       <div class="stats-grid">
         <div class="stat-card green">
-          <h3>ملفي الشخصي</h3>
-          <p>معلوماتك الرياضية</p>
+          <h3 data-translate="my_profile">ملفي الشخصي</h3>
+          <p data-translate="sports_info">معلوماتك الرياضية</p>
           <div style="font-size: 2rem; font-weight: bold; color: #10b981;">85%</div>
-          <div style="color: #6b7280;">مكتمل</div>
+          <div style="color: #6b7280;" data-translate="completed">مكتمل</div>
         </div>
 
         <div class="stat-card blue">
-          <h3>الفرص المتاحة</h3>
-          <p>عروض الأندية</p>
+          <h3 data-translate="available_opportunities">الفرص المتاحة</h3>
+          <p data-translate="club_offers">عروض الأندية</p>
           <div style="font-size: 2rem; font-weight: bold; color: #3b82f6;">12</div>
-          <div style="color: #6b7280;">فرصة جديدة</div>
+          <div style="color: #6b7280;" data-translate="new_opportunity">فرصة جديدة</div>
         </div>
 
         <div class="stat-card purple">
-          <h3>التقييمات</h3>
-          <p>من كشافي الكشاف سبورت</p>
+          <h3 data-translate="ratings">التقييمات</h3>
+          <p data-translate="from_scouts">من كشافي الكشاف سبورت</p>
           <div style="font-size: 2rem; font-weight: bold; color: #8b5cf6;">4.8</div>
-          <div style="color: #6b7280;">من 5</div>
+          <div style="color: #6b7280;" data-translate="out_of_5">من 5</div>
         </div>
 
         <div class="stat-card orange">
-          <h3>المشاهدات</h3>
-          <p>زيارات الملف</p>
+          <h3 data-translate="views">المشاهدات</h3>
+          <p data-translate="profile_visits">زيارات الملف</p>
           <div style="font-size: 2rem; font-weight: bold; color: #f59e0b;">247</div>
-          <div style="color: #6b7280;">هذا الشهر</div>
+          <div style="color: #6b7280;" data-translate="this_month">هذا الشهر</div>
         </div>
       </div>
 
       <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <h3 style="margin-bottom: 1rem;">النشاط الأخير</h3>
+        <h3 style="margin-bottom: 1rem;" data-translate="recent_activity">النشاط الأخير</h3>
         <div style="space-y: 1rem;">
           <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #f0fdf4; border-radius: 8px; margin-bottom: 1rem;">
             <div style="background: #10b981; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">✓</div>
             <div>
-              <h4>تم تحديث ملفك الشخصي</h4>
-              <p style="color: #6b7280; margin: 0;">منذ ساعتين</p>
+              <h4 data-translate="profile_updated">تم تحديث ملفك الشخصي</h4>
+              <p style="color: #6b7280; margin: 0;" data-translate="two_hours_ago">منذ ساعتين</p>
             </div>
           </div>
           
           <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #eff6ff; border-radius: 8px; margin-bottom: 1rem;">
             <div style="background: #3b82f6; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">👁️</div>
             <div>
-              <h4>شاهد كشاف جديد ملفك</h4>
-              <p style="color: #6b7280; margin: 0;">منذ 4 ساعات</p>
+              <h4 data-translate="scout_viewed">شاهد كشاف جديد ملفك</h4>
+              <p style="color: #6b7280; margin: 0;" data-translate="four_hours_ago">منذ 4 ساعات</p>
             </div>
           </div>
           
           <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #fefce8; border-radius: 8px;">
             <div style="background: #f59e0b; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">📧</div>
             <div>
-              <h4>رسالة جديدة من نادي الهلال</h4>
-              <p style="color: #6b7280; margin: 0;">منذ يوم واحد</p>
+              <h4 data-translate="new_message">رسالة جديدة من نادي الهلال</h4>
+              <p style="color: #6b7280; margin: 0;" data-translate="one_day_ago">منذ يوم واحد</p>
             </div>
           </div>
         </div>

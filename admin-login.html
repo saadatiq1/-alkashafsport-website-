@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسجيل الدخول الإداري - الكشاف سبورت</title>
-    <script src="sms-api.js"></script>
     <style>
         * {
             margin: 0;
@@ -24,679 +23,173 @@
         
         .login-container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 450px;
-            margin: 20px;
-        }
-        
-        .login-header {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-            padding: 40px 30px;
+            max-width: 400px;
             text-align: center;
         }
         
         .logo {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-        
-        .login-header h1 {
-            font-size: 24px;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .login-header p {
-            opacity: 0.9;
-            font-size: 14px;
-        }
-        
-        .login-form {
-            padding: 40px 30px;
-        }
-        
-        .step-indicator {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            gap: 10px;
-        }
-        
-        .step {
-            width: 40px;
-            height: 40px;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #3b82f6;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 600;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
             font-size: 14px;
-            transition: all 0.3s;
-        }
-        
-        .step.active {
-            background: #3b82f6;
-            color: white;
-        }
-        
-        .step.completed {
-            background: #10b981;
-            color: white;
-        }
-        
-        .step.inactive {
-            background: #e5e7eb;
-            color: #6b7280;
-        }
-        
-        .step-connector {
-            width: 30px;
-            height: 2px;
-            background: #e5e7eb;
-            margin-top: 19px;
-        }
-        
-        .step-connector.active {
-            background: #10b981;
-        }
-        
-        .form-step {
-            display: none;
-        }
-        
-        .form-step.active {
-            display: block;
         }
         
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            text-align: right;
         }
         
-        .form-group label {
+        label {
             display: block;
             margin-bottom: 8px;
-            color: #374151;
+            color: #333;
             font-weight: 500;
-            font-size: 14px;
         }
         
-        .form-group input {
+        input[type="password"] {
             width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
             font-size: 16px;
-            transition: all 0.3s;
-            background: #f9fafb;
+            transition: border-color 0.3s;
+            direction: ltr;
+            text-align: left;
         }
         
-        .form-group input:focus {
+        input[type="password"]:focus {
             outline: none;
             border-color: #3b82f6;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
         
-        .phone-input-group {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .country-code {
-            width: 80px;
-            text-align: center;
-            font-weight: 600;
-        }
-        
-        .phone-number {
-            flex: 1;
-        }
-        
-        .btn {
+        .login-btn {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
+            background: #3b82f6;
+            color: white;
             border: none;
-            border-radius: 12px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-bottom: 15px;
+            transition: background-color 0.3s;
         }
         
-        .btn-primary {
-            background: #3b82f6;
-            color: white;
-        }
-        
-        .btn-primary:hover {
+        .login-btn:hover {
             background: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
-        }
-        
-        .btn-primary:disabled {
-            background: #9ca3af;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-        
-        .btn-secondary {
-            background: #6b7280;
-            color: white;
-        }
-        
-        .btn-secondary:hover {
-            background: #4b5563;
-        }
-        
-        .verification-code {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-        
-        .code-input {
-            width: 50px;
-            height: 50px;
-            text-align: center;
-            font-size: 20px;
-            font-weight: 600;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            background: #f9fafb;
-        }
-        
-        .code-input:focus {
-            border-color: #3b82f6;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-        
-        .resend-code {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .resend-link {
-            color: #3b82f6;
-            text-decoration: none;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        
-        .resend-link:hover {
-            text-decoration: underline;
-        }
-        
-        .resend-link.disabled {
-            color: #9ca3af;
-            cursor: not-allowed;
-        }
-        
-        .countdown {
-            color: #6b7280;
-            font-size: 14px;
         }
         
         .error-message {
-            background: #fef2f2;
             color: #dc2626;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            margin-top: 15px;
             font-size: 14px;
-            border: 1px solid #fecaca;
             display: none;
         }
         
         .success-message {
-            background: #f0fdf4;
             color: #16a34a;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            margin-top: 15px;
             font-size: 14px;
-            border: 1px solid #bbf7d0;
             display: none;
-        }
-        
-        .loading {
-            display: none;
-            text-align: center;
-            color: #6b7280;
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-        
-        .loading::after {
-            content: '';
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #e5e7eb;
-            border-top: 2px solid #3b82f6;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 10px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .step-title {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #1f2937;
-            font-size: 18px;
-            font-weight: 600;
-        }
-        
-        .step-description {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #6b7280;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        
-        @media (max-width: 480px) {
-            .login-container {
-                margin: 10px;
-            }
-            
-            .login-header {
-                padding: 30px 20px;
-            }
-            
-            .login-form {
-                padding: 30px 20px;
-            }
-            
-            .verification-code {
-                gap: 8px;
-            }
-            
-            .code-input {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="login-header">
-            <div class="logo">⚽</div>
-            <h1>تسجيل الدخول الإداري</h1>
-            <p>الكشاف سبورت - إدارة إعدادات التطبيق</p>
-        </div>
-
-        <div class="login-form">
-            <!-- مؤشر الخطوات -->
-            <div class="step-indicator">
-                <div class="step active" id="step1">1</div>
-                <div class="step-connector" id="connector1"></div>
-                <div class="step inactive" id="step2">2</div>
+        <div class="logo">⚽</div>
+        <h1>لوحة التحكم الإدارية</h1>
+        <p class="subtitle">الكشاف سبورت - إدارة إعدادات التطبيق</p>
+        
+        <form id="adminLoginForm">
+            <div class="form-group">
+                <label for="password">كلمة المرور:</label>
+                <input type="password" id="password" name="password" required>
             </div>
-
-            <!-- رسائل الخطأ والنجاح -->
-            <div class="error-message" id="errorMessage"></div>
-            <div class="success-message" id="successMessage"></div>
-            <div class="loading" id="loadingMessage">جاري الإرسال...</div>
-
-            <!-- الخطوة الأولى: كلمة المرور -->
-            <div class="form-step active" id="passwordStep">
-                <div class="step-title">🔐 كلمة المرور</div>
-                <div class="step-description">أدخل كلمة المرور الإدارية للمتابعة</div>
-                
-                <form id="passwordForm">
-                    <div class="form-group">
-                        <label for="password">كلمة المرور</label>
-                        <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">التالي</button>
-                </form>
+            
+            <button type="submit" class="login-btn">تسجيل الدخول</button>
+            
+            <div id="errorMessage" class="error-message">
+                كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.
             </div>
-
-            <!-- الخطوة الثانية: رقم الجوال -->
-            <div class="form-step" id="phoneStep">
-                <div class="step-title">📱 التحقق من الجوال</div>
-                <div class="step-description">أدخل رقم جوالك لإرسال كود التحقق</div>
-                
-                <form id="phoneForm">
-                    <div class="form-group">
-                        <label for="phone">رقم الجوال</label>
-                        <div class="phone-input-group">
-                            <input type="text" class="country-code" value="+966" readonly>
-                            <input type="tel" id="phone" name="phone" class="phone-number" placeholder="5xxxxxxxx" required>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">إرسال الكود</button>
-                    <button type="button" class="btn btn-secondary" onclick="goBackToPassword()">العودة</button>
-                </form>
+            
+            <div id="successMessage" class="success-message">
+                تم تسجيل الدخول بنجاح! جاري التحويل...
             </div>
-
-            <!-- الخطوة الثالثة: كود التحقق -->
-            <div class="form-step" id="codeStep">
-                <div class="step-title">🔢 كود التحقق</div>
-                <div class="step-description">أدخل الكود المرسل إلى جوالك</div>
-                
-                <form id="codeForm">
-                    <div class="verification-code">
-                        <input type="text" class="code-input" maxlength="1" id="code1">
-                        <input type="text" class="code-input" maxlength="1" id="code2">
-                        <input type="text" class="code-input" maxlength="1" id="code3">
-                        <input type="text" class="code-input" maxlength="1" id="code4">
-                        <input type="text" class="code-input" maxlength="1" id="code5">
-                        <input type="text" class="code-input" maxlength="1" id="code6">
-                    </div>
-                    
-                    <div class="resend-code">
-                        <span class="countdown" id="countdown">إعادة الإرسال خلال <span id="timer">60</span> ثانية</span>
-                        <a href="#" class="resend-link disabled" id="resendLink" onclick="resendCode()">إعادة إرسال الكود</a>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
-                    <button type="button" class="btn btn-secondary" onclick="goBackToPhone()">تغيير الرقم</button>
-                </form>
-            </div>
-        </div>
+        </form>
     </div>
 
     <script>
-        // متغيرات عامة
-        let currentStep = 1;
-        let phoneNumber = '';
-        let verificationCode = '';
-        let resendTimer = 60;
-        let timerInterval;
-
-        // كلمة المرور الصحيحة
         const ADMIN_PASSWORD = 'Saad@8021-1972';
-
-        // معالج نموذج كلمة المرور
-        document.getElementById('passwordForm').addEventListener('submit', function(e) {
+        
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            
+            // إخفاء الرسائل السابقة
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
             
             if (password === ADMIN_PASSWORD) {
-                showSuccess('كلمة المرور صحيحة!');
-                setTimeout(() => {
-                    goToStep(2);
-                }, 1000);
-            } else {
-                showError('كلمة المرور غير صحيحة');
-            }
-        });
-
-        // معالج نموذج رقم الجوال
-        document.getElementById('phoneForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const phone = document.getElementById('phone').value;
-            
-            if (validatePhone(phone)) {
-                phoneNumber = '+966' + phone;
-                sendSMSCode(phoneNumber);
-            } else {
-                showError('رقم الجوال غير صحيح. يجب أن يبدأ بـ 5 ويكون 9 أرقام');
-            }
-        });
-
-        // معالج نموذج كود التحقق
-        document.getElementById('codeForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const code = getVerificationCode();
-            
-            if (code.length === 6) {
-                verifyCode(code);
-            } else {
-                showError('يرجى إدخال الكود كاملاً');
-            }
-        });
-
-        // التحقق من صحة رقم الجوال
-        function validatePhone(phone) {
-            const phoneRegex = /^5[0-9]{8}$/;
-            return phoneRegex.test(phone);
-        }
-
-        // إرسال كود SMS
-        async function sendSMSCode(phone) {
-            showLoading(true);
-            hideMessages();
-            
-            try {
-                // إنشاء خدمة SMS
-                const smsService = new SMSService();
-                
-                // توليد كود التحقق
-                verificationCode = smsService.generateVerificationCode();
-                
-                // إرسال الكود
-                const result = await smsService.sendVerificationCode(phone, verificationCode);
-                
-                showLoading(false);
-                
-                if (result.success) {
-                    showSuccess(`تم إرسال كود التحقق إلى ${phone}`);
-                    
-                    // إذا كانت محاكاة، اعرض الكود
-                    if (result.simulation) {
-                        console.log('كود التحقق:', verificationCode);
-                        alert(`كود التحقق للاختبار: ${verificationCode}`);
-                    }
-                    
-                    setTimeout(() => {
-                        goToStep(3);
-                        startResendTimer();
-                    }, 1500);
-                } else {
-                    showError('فشل في إرسال الكود: ' + result.error);
-                }
-                
-            } catch (error) {
-                showLoading(false);
-                showError('فشل في إرسال الكود. يرجى المحاولة مرة أخرى');
-                console.error('خطأ في إرسال SMS:', error);
-            }
-        }
-
-        // التحقق من الكود
-        function verifyCode(code) {
-            if (code === verificationCode) {
-                showSuccess('تم التحقق بنجاح! جاري تسجيل الدخول...');
-                
-                // حفظ حالة المصادقة
+                // حفظ حالة تسجيل الدخول
                 localStorage.setItem('admin_authenticated', 'true');
                 localStorage.setItem('admin_login_time', Date.now().toString());
-                localStorage.setItem('admin_phone', phoneNumber);
                 
+                // عرض رسالة النجاح
+                successMessage.style.display = 'block';
+                
+                // التحويل إلى لوحة التحكم
                 setTimeout(() => {
                     window.location.href = 'admin-dashboard.html';
                 }, 1500);
             } else {
-                showError('كود التحقق غير صحيح');
-                clearCodeInputs();
+                // عرض رسالة الخطأ
+                errorMessage.style.display = 'block';
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
             }
-        }
-
-        // توليد كود عشوائي
-        function generateRandomCode() {
-            return Math.floor(100000 + Math.random() * 900000).toString();
-        }
-
-        // الحصول على كود التحقق من الحقول
-        function getVerificationCode() {
-            let code = '';
-            for (let i = 1; i <= 6; i++) {
-                code += document.getElementById(`code${i}`).value;
-            }
-            return code;
-        }
-
-        // مسح حقول الكود
-        function clearCodeInputs() {
-            for (let i = 1; i <= 6; i++) {
-                document.getElementById(`code${i}`).value = '';
-            }
-            document.getElementById('code1').focus();
-        }
-
-        // الانتقال بين الخطوات
-        function goToStep(step) {
-            // إخفاء جميع الخطوات
-            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-            
-            // إظهار الخطوة المطلوبة
-            if (step === 1) {
-                document.getElementById('passwordStep').classList.add('active');
-                updateStepIndicator(1);
-            } else if (step === 2) {
-                document.getElementById('phoneStep').classList.add('active');
-                updateStepIndicator(2);
-            } else if (step === 3) {
-                document.getElementById('codeStep').classList.add('active');
-                updateStepIndicator(2);
-                document.getElementById('code1').focus();
-            }
-            
-            currentStep = step;
-            hideMessages();
-        }
-
-        // تحديث مؤشر الخطوات
-        function updateStepIndicator(activeStep) {
-            const step1 = document.getElementById('step1');
-            const step2 = document.getElementById('step2');
-            const connector = document.getElementById('connector1');
-            
-            if (activeStep === 1) {
-                step1.className = 'step active';
-                step2.className = 'step inactive';
-                connector.className = 'step-connector';
-            } else if (activeStep === 2) {
-                step1.className = 'step completed';
-                step2.className = 'step active';
-                connector.className = 'step-connector active';
-            }
-        }
-
-        // العودة إلى كلمة المرور
-        function goBackToPassword() {
-            goToStep(1);
-            document.getElementById('password').value = '';
-        }
-
-        // العودة إلى رقم الجوال
-        function goBackToPhone() {
-            goToStep(2);
-            clearInterval(timerInterval);
-        }
-
-        // إعادة إرسال الكود
-        function resendCode() {
-            if (document.getElementById('resendLink').classList.contains('disabled')) {
-                return;
-            }
-            
-            sendSMSCode(phoneNumber);
-            startResendTimer();
-        }
-
-        // بدء مؤقت إعادة الإرسال
-        function startResendTimer() {
-            resendTimer = 60;
-            const resendLink = document.getElementById('resendLink');
-            const countdown = document.getElementById('countdown');
-            const timer = document.getElementById('timer');
-            
-            resendLink.classList.add('disabled');
-            countdown.style.display = 'inline';
-            
-            timerInterval = setInterval(() => {
-                resendTimer--;
-                timer.textContent = resendTimer;
-                
-                if (resendTimer <= 0) {
-                    clearInterval(timerInterval);
-                    resendLink.classList.remove('disabled');
-                    countdown.style.display = 'none';
-                }
-            }, 1000);
-        }
-
-        // عرض رسالة خطأ
-        function showError(message) {
-            const errorDiv = document.getElementById('errorMessage');
-            errorDiv.textContent = message;
-            errorDiv.style.display = 'block';
-            
-            setTimeout(() => {
-                errorDiv.style.display = 'none';
-            }, 5000);
-        }
-
-        // عرض رسالة نجاح
-        function showSuccess(message) {
-            const successDiv = document.getElementById('successMessage');
-            successDiv.textContent = message;
-            successDiv.style.display = 'block';
-            
-            setTimeout(() => {
-                successDiv.style.display = 'none';
-            }, 3000);
-        }
-
-        // إخفاء الرسائل
-        function hideMessages() {
-            document.getElementById('errorMessage').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'none';
-        }
-
-        // عرض/إخفاء رسالة التحميل
-        function showLoading(show) {
-            document.getElementById('loadingMessage').style.display = show ? 'block' : 'none';
-        }
-
-        // التنقل التلقائي بين حقول الكود
-        document.querySelectorAll('.code-input').forEach((input, index) => {
-            input.addEventListener('input', function() {
-                if (this.value.length === 1 && index < 5) {
-                    document.getElementById(`code${index + 2}`).focus();
-                }
-            });
-            
-            input.addEventListener('keydown', function(e) {
-                if (e.key === 'Backspace' && this.value === '' && index > 0) {
-                    document.getElementById(`code${index}`).focus();
-                }
-            });
         });
-
-        // التحقق من المصادقة عند تحميل الصفحة
+        
+        // التحقق من تسجيل الدخول السابق
         window.addEventListener('load', function() {
             const isAuthenticated = localStorage.getItem('admin_authenticated') === 'true';
             const loginTime = localStorage.getItem('admin_login_time');
             
             if (isAuthenticated && loginTime) {
-                const timeDiff = (Date.now() - parseInt(loginTime)) / (1000 * 60 * 60);
+                const timeDiff = (Date.now() - parseInt(loginTime)) / (1000 * 60 * 60); // بالساعات
+                
                 if (timeDiff < 24) {
+                    // لا يزال مسجل الدخول
                     window.location.href = 'admin-dashboard.html';
+                } else {
+                    // انتهت صلاحية الجلسة
+                    localStorage.removeItem('admin_authenticated');
+                    localStorage.removeItem('admin_login_time');
                 }
             }
         });
