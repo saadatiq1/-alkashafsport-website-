@@ -31,7 +31,7 @@
 
 ## كيفية الاستخدام
 
-1. **افتح الموقع**: [https://ggchzker.manus.space](https://ggchzker.manus.space)
+1. **افتح الموقع**: [https://qwmydsgd.manus.space](https://qwmydsgd.manus.space)
 2. **اختر اللغة**: من القائمة في أعلى اليسار
 3. **تصفح المحتوى**: جميع النصوص تترجم تلقائياً
 4. **سجل كعضو**: اختر نوع العضوية (موهبة أو كشاف)
@@ -40,6 +40,8 @@
 
 - `index.html`: الصفحة الرئيسية
 - `member.html`: صفحة العضو
+- `payment-info.html`: صفحة معلومات الدفع وأرقام الايبان
+- `members-management.html`: صفحة إدارة الأعضاء وتفعيل الاشتراكات
 - `admin-dashboard.html`: لوحة التحكم الإدارية
 - `admin-login.html`: صفحة تسجيل دخول الإدارة
 - `translations.js`: نظام الترجمة
@@ -63,7 +65,8 @@
 
 للاستفسارات والدعم:
 - البريد الإلكتروني: alkashaf@sport.com
-- الموقع: [https://ggchzker.manus.space](https://ggchzker.manus.space)
+- الموقع: [https://qwmydsgd.manus.space](https://qwmydsgd.manus.space)
+- البريد الإلكتروني: alkashafsport1@gmail.com
 
 ---
 

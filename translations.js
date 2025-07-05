@@ -65,7 +65,18 @@ const translations = {
         arabic: "العربية",
         english: "الإنجليزية",
         french: "الفرنسية",
-        spanish: "الإسبانية"
+        spanish: "الإسبانية",
+        
+        // Footer
+        contact_us: "للتواصل معنا",
+        footer_text: "© 2024 الكشاف سبورت - جميع الحقوق محفوظة",
+        
+        // صفحة معلومات الدفع
+        payment_info_title: "معلومات الدفع والاشتراك",
+        payment_info_subtitle: "اختر طريقة الدفع المناسبة لك",
+        bank_transfer: "التحويل البنكي",
+        digital_payment: "الدفع الإلكتروني",
+        back_to_home: "العودة للرئيسية"
     },
     
     en: {
@@ -133,7 +144,18 @@ const translations = {
         arabic: "Arabic",
         english: "English",
         french: "French",
-        spanish: "Spanish"
+        spanish: "Spanish",
+        
+        // Footer
+        contact_us: "Contact Us",
+        footer_text: "© 2024 AlKashaf Sport - All Rights Reserved",
+        
+        // Payment info page
+        payment_info_title: "Payment & Subscription Information",
+        payment_info_subtitle: "Choose your preferred payment method",
+        bank_transfer: "Bank Transfer",
+        digital_payment: "Digital Payment",
+        back_to_home: "Back to Home"
     },
     
     fr: {
@@ -201,7 +223,14 @@ const translations = {
         arabic: "Arabe",
         english: "Anglais",
         french: "Français",
-        spanish: "Espagnol"
+        spanish: "Espagnol",
+        
+        // Page d'informations de paiement
+        payment_info_title: "Informations de Paiement et d'Abonnement",
+        payment_info_subtitle: "Choisissez votre méthode de paiement préférée",
+        bank_transfer: "Virement Bancaire",
+        digital_payment: "Paiement Numérique",
+        back_to_home: "Retour à l'Accueil"
     },
     
     es: {
@@ -269,7 +298,14 @@ const translations = {
         arabic: "Árabe",
         english: "Inglés",
         french: "Francés",
-        spanish: "Español"
+        spanish: "Español",
+        
+        // Página de información de pago
+        payment_info_title: "Información de Pago y Suscripción",
+        payment_info_subtitle: "Elige tu método de pago preferido",
+        bank_transfer: "Transferencia Bancaria",
+        digital_payment: "Pago Digital",
+        back_to_home: "Volver al Inicio"
     }
 };
 
